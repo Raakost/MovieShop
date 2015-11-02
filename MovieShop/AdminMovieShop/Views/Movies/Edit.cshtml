@@ -1,0 +1,23 @@
+﻿@model AdminMovieShop.Models.MoviesViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="Post" action="~/Movies/Edit" class="col-md-12">
+    <input type="hidden" class="form-control" name="Id" value="@Model.Movie.Id" hidden>
+    <input type="text" class="form-control" name="Title" value="@Model.Movie.Title">
+    <input type="date" class="form-control" name="Year" value="@Model.Movie.Year.ToString("yyyy-MM-dd")">
+    <input type="number" class="form-control" name="Price" value="@Model.Movie.Price">
+    <input type="text" class="form-control" name="PicturePath" value="@Model.Movie.PicturePath">
+    <input type="text" class="form-control" name="TrailerURL" value="@Model.Movie.TrailerURL">
+    <select class="form-control" name="Genre.Id">
+        @foreach (var item in Model.Genres)
+        {
+            <option value="@item.Id" @(@Model.Movie.Genre.Id == @item.Id ? "selected" : "" )>@item.Name</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-default"> Update</button>
+</form>

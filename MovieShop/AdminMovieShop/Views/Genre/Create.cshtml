@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MoviesShopProxy.DomainModel.Genre>
+
+<p></p>
+@Html.ActionLink("Return to Movies", "Index", new { Controller = "Movies" }, new { @class = "btn btn-success" })
+<p></p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", null, new { id = item.Id }, FormMethod.Post))
+                {                
+                    <button type="submit" class="btn btn-success">Delete</button>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<form method="Post" action="~/Genre/Create" class="col-md-12">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="Name">
+    </div>
+    <button type="submit" class="btn btn-success"> Add </button>
+</form>
+@if (ViewBag.GenreError != null)
+{
+    <div style="color : red;">@ViewBag.GenreError</div>
+}

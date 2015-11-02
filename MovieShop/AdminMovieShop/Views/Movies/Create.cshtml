@@ -1,0 +1,42 @@
+﻿@model AdminMovieShop.Models.MoviesViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form method="Post" action="~/Movies/Create" class="col-md-12">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="Title">
+    </div>
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input type="date" class="form-control" id="date" name="Year">
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" class="form-control" name="Price">
+    </div>
+    <div class="form-group">
+        <label for="picturepath">Picture Path</label>
+        <input type="text" id="picturepath" class="form-control" name="PicturePath">
+    </div>
+    <div class="form-group">
+        <label for="trailerurl">Trailer URL</label>
+        <input type="text" id="trailerurl" class="form-control" name="TrailerURL">
+    </div>
+
+    <div class="form-group">
+        <label for="genre">Genre</label>
+        <select class="form-control" id="genreId" name="Genre.Id">
+            @foreach (var item in Model.Genres)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+        <button type="submit" class="btn btn-success"> Save</button>
+
+</form>

@@ -1,0 +1,14 @@
+﻿@model MoviesShopProxy.DomainModel.Customer
+
+<div class="customer-wrap">
+    <div class="row">
+        @using (Html.BeginForm("CustomerConfirmation", "Customer", FormMethod.Get, new { @class = "col-md-12" }))
+        {
+            <div class="col-xs-6 col-sm-5 col-md-8">
+                <h2>Enter your email to proceed</h2>
+                <input type="text" name="email" value="" class="form-control input-lg" placeholder="Email" />
+                <button class="btn btn-default" type="submit">Next</button>
+            </div>
+        }
+    </div>
+</div>

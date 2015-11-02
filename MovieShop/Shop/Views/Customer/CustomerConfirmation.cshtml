@@ -1,0 +1,30 @@
+﻿@model MoviesShopProxy.DomainModel.Customer
+
+@{
+    ViewBag.Title = "CustomerConfirmation";
+    string zipcodeValue = "";
+    if (Model.Zipcode != 0)
+    {
+        zipcodeValue = Model.Zipcode.ToString();
+    }
+}
+
+<h2>CustomerConfirmation</h2>
+
+<div class="customer-wrap">
+    <div class="row">
+        <form method="post" action="CustomerPlaceOrder">
+            <div class="col-xs-6 col-md-6">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="Email" value="@Model.Email" />
+                <input type="text" name="firstname" value="@Model.Firstname" class="form-control input-lg" placeholder="First Name" />
+                <input type="text" name="lastname" value="@Model.Lastname" class="form-control input-lg" placeholder="Last Name" />
+                <input type="text" name="streetname" value="@Model.StreetName" class="form-control input-lg" placeholder="Street Name" />
+                <input type="text" name="streetnumber" value="@Model.StreetNumber" class="form-control input-lg" placeholder="Street Number" />
+                <input type="text" name="zipcode" value="@zipcodeValue" class="form-control input-lg" placeholder="Zipcode" />
+                <input type="text" name="country" value="@Model.Country" class="form-control input-lg" placeholder="Country" />
+                <button class="btn btn-default" type="submit">Place Order</button>
+            </div>
+        </form>
+    </div>
+</div>
