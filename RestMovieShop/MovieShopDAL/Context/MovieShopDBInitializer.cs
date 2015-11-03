@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace MovieShopDAL.Context
 {
-    public class MovieShopDBInitializer : DropCreateDatabaseIfModelChanges<MovieShopContext>
+    public class MovieShopDBInitializer : DropCreateDatabaseAlways<MovieShopContext>
     {
 
         protected override void Seed(MovieShopContext context)

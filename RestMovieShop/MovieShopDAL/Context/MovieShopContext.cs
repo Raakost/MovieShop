@@ -13,6 +13,7 @@ namespace MovieShopDAL.Context
         public MovieShopContext() : base("MovieShop")
         {
             Database.SetInitializer(new MovieShopDBInitializer());
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Movie> Movies { get; set; }
