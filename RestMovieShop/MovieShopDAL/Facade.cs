@@ -14,10 +14,9 @@ namespace MovieShopDAL
         private GenreRepository genreRepo;
         private CustomerRepository customerRepo;
         private OrderRepository orderRepo;
-        private MovieRepository movieRepo; 
+        private IRepository<Movie> movieRepo;
 
-
-        public MovieRepository GetMovieRepository()
+        public IRepository<Movie> GetMovieRepository1()
         {
             if (movieRepo == null)
             {
