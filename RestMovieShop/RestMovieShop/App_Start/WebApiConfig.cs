@@ -20,11 +20,12 @@ namespace RestMovieShop
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            /*
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Serialize;
             config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling =
                 Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            config.Formatters.XmlFormatter.MaxDepth = 2;
+            config.Formatters.XmlFormatter.MaxDepth = 2;*/
         }
     }
 }

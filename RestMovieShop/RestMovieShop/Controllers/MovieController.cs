@@ -11,6 +11,7 @@ namespace RestMovieShop.Controllers
 {
     public class MovieController : ApiController
     {
+        [HttpGet]
         public IEnumerable<Movie> ReadAllMovies()
         {
             return new Facade().GetMovieRepository().ReadAll();
