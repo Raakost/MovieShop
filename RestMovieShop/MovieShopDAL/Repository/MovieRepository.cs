@@ -2,14 +2,15 @@
 using MovieShopDAL.DomainModel;
 using System.Collections.Generic;
 using System.Linq;
+using MovieShopDAL.Repository.iRepository;
+using System;
 
 namespace MovieShopDAL.Repository
 {
 
-    public class MovieRepository
+    public class MovieRepository : IRepository<Movie>
     {
-
-        public List<Movie> ReadAll()
+        IEnumerable<Movie> IRepository<Movie>.ReadAll()
         {
             using (var ctx = new MovieShopContext())
             {
@@ -62,6 +63,5 @@ namespace MovieShopDAL.Repository
                 }
             }
         }
-
     }
 }

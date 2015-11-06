@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using MovieShopDAL.Repository.iRepository;
 
 namespace MovieShopDAL.Repository
 {
-    public class OrderRepository
+    public class OrderRepository : IRepository<Order>
     {
-        public List<Order> ReadAll()
+        IEnumerable<Order> IRepository<Order>.ReadAll()
         {
             using (var ctx = new MovieShopContext())
             {

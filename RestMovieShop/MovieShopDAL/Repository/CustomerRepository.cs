@@ -6,12 +6,13 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieShopDAL.Repository.iRepository;
 
 namespace MovieShopDAL.Repository
 {
-    public class CustomerRepository
+    public class CustomerRepository : IRepository<Customer>
     {
-        public List<Customer> ReadAll()
+        IEnumerable<Customer> IRepository<Customer>.ReadAll()
         {
             using (var ctx = new MovieShopContext())
             {
@@ -50,7 +51,7 @@ namespace MovieShopDAL.Repository
             {
                 using (var ctx = new MovieShopContext())
                 {
-                    var customerToDelete = ctx.Customers.Where(cust => cust.Id == customer.Id).FirstOrDefault();
+                    var customerToDelete = ctx.Customers.FirstOrDefault(cust => cust.Id == customer.Id);
                     ctx.Customers.Remove(customerToDelete);
                     ctx.SaveChanges();
                 }
@@ -65,7 +66,7 @@ namespace MovieShopDAL.Repository
         {
             using (var ctx = new MovieShopContext())
             {
-                var customerToUpdate = ctx.Customers.Where(cust => cust.Id == customer.Id).FirstOrDefault();
+                var customerToUpdate = ctx.Customers.FirstOrDefault(cust => cust.Id == customer.Id);
                 if (customerToUpdate != null)
                 {
                     customerToUpdate.Country = customer.Country;

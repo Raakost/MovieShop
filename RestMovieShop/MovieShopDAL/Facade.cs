@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieShopDAL.DomainModel;
+using MovieShopDAL.Repository.iRepository;
 
 namespace MovieShopDAL
 {
     public class Facade
     {
-        private MovieRepository movieRepo;
         private GenreRepository genreRepo;
         private CustomerRepository customerRepo;
         private OrderRepository orderRepo;
+        private MovieRepository movieRepo; 
+
 
         public MovieRepository GetMovieRepository()
         {

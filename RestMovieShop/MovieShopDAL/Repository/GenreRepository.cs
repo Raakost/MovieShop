@@ -6,14 +6,15 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieShopDAL.Repository.iRepository;
 
 namespace MovieShopDAL.Repository
 {
-    public class GenreRepository
+    public class GenreRepository : IRepository<Genre>
     {
-
-        public List<Genre> ReadAll()
+        IEnumerable<Genre> IRepository<Genre>.ReadAll()
         {
+
             using (var ctx = new MovieShopContext())
             {
                 return ctx.Genres.ToList();
@@ -68,6 +69,5 @@ namespace MovieShopDAL.Repository
                 }
             }
         }
-
     }
 }
