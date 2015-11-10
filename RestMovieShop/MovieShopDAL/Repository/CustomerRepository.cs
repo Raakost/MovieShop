@@ -12,7 +12,7 @@ namespace MovieShopDAL.Repository
 {
     public class CustomerRepository : IRepository<Customer>
     {
-        IEnumerable<Customer> IRepository<Customer>.ReadAll()
+        public IEnumerable<Customer> ReadAll()
         {
             using (var ctx = new MovieShopContext())
             {
@@ -29,6 +29,8 @@ namespace MovieShopDAL.Repository
                 return customerToReturn;
             }
         }
+
+        
 
         public Customer ReadById(int Id)
         {
