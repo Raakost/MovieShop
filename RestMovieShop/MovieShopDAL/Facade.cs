@@ -16,7 +16,7 @@ namespace MovieShopDAL
         private OrderRepository orderRepo;
         private IRepository<Movie> movieRepo;
 
-        public IRepository<Movie> GetMovieRepository1()
+        public IRepository<Movie> GetMovieRepository()
         {
             if (movieRepo == null)
             {

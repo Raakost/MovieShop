@@ -25,14 +25,15 @@ namespace MovieShopDAL.Repository
                 return ctx.Movies.Include("Genre").FirstOrDefault(x => x.Id == Id);
             }
         }
-        public void Add(Movie movie)
+        public Movie Add(Movie movie)
         {
             using (var ctx = new MovieShopContext())
             {
                 // create queries
-                ctx.Movies.Add(movie);
+                var movieToReturn = ctx.Movies.Add(movie);
                 // execute changes
                 ctx.SaveChanges();
+                return movieToReturn;
             }
         }
 
@@ -46,7 +47,7 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Update(Movie movie)
+        public Movie Update(Movie movie)
         {
             using (var ctx = new MovieShopContext())
             {
@@ -60,7 +61,9 @@ namespace MovieShopDAL.Repository
                     movieToUpdate.TrailerURL = movie.TrailerURL;
                     movieToUpdate.Genre = ctx.Genres.FirstOrDefault(x => x.Id == movie.Genre.Id);
                     ctx.SaveChanges();
+                    return movieToUpdate;
                 }
+                return movie;
             }
         }
     }

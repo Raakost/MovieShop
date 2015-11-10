@@ -23,10 +23,25 @@ namespace RestMovieShop.Controllers
             return new Facade().GetMovieRepository().ReadById(Id);
         }
 
+        [HttpPost]
+        public Movie AddMovie(Movie movie)
+        {
+            return new Facade().GetMovieRepository().Add(movie);
+        }
+
         [HttpDelete]
         public void DeleteMovie(Movie movie)
         {
             new Facade().GetMovieRepository().Remove(movie);
         }
+        
+        [HttpPut]
+        public Movie UpdateMovie(int Id, Movie movie)
+        {
+            movie.Id = Id;
+            return new Facade().GetMovieRepository().Update(movie);
+        }
+
+
     }
 }

@@ -29,14 +29,15 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Add(Genre genre)
+        public Genre Add(Genre genre)
         {
             using (var ctx = new MovieShopContext())
             {
                 // create queries
-                ctx.Genres.Add(genre);
+                var genreToUpdate = ctx.Genres.Add(genre);
                 // execute changes
                 ctx.SaveChanges();
+                return genreToUpdate;
             }
         }
 
@@ -57,16 +58,18 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Update(Genre genre)
+        public Genre Update(Genre genre)
         {
             using (var ctx = new MovieShopContext())
             {
-                var genreToUpdate = ctx.Genres.Where(x => x.Id == genre.Id).FirstOrDefault();
+                var genreToUpdate = ctx.Genres.FirstOrDefault(x => x.Id == genre.Id);
                 if (genreToUpdate != null)
                 {
                     genreToUpdate.Name = genre.Name;
                     ctx.SaveChanges();
+                    return genreToUpdate;
                 }
+                return genre;
             }
         }
     }

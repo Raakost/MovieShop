@@ -12,10 +12,10 @@ namespace MovieShopDAL.Repository.iRepository
 
         T ReadById(int Id);
 
-        void Add(T item);
+        T Add(T item);
 
         void Remove(T item);
 
-        void Update(T item);
+        T Update(T item);
     }
 }

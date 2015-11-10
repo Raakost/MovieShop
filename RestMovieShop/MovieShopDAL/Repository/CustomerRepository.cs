@@ -20,12 +20,13 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Add(Customer customer)
+        public Customer Add(Customer customer)
         {
             using (var ctx = new MovieShopContext())
             {
-                ctx.Customers.Add(customer);
+                var customerToReturn = ctx.Customers.Add(customer);
                 ctx.SaveChanges();
+                return customerToReturn;
             }
         }
 
@@ -62,7 +63,7 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Update(Customer customer)
+        public Customer Update(Customer customer)
         {
             using (var ctx = new MovieShopContext())
             {
@@ -77,7 +78,9 @@ namespace MovieShopDAL.Repository
                     customerToUpdate.StreetNumber = customer.StreetNumber;
                     customerToUpdate.Zipcode = customer.Zipcode;
                     ctx.SaveChanges();
+                    return customerToUpdate;
                 }
+                return customer;
             }
         }
     }

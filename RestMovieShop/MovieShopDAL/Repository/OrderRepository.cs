@@ -20,7 +20,7 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Add(Order order)
+        public Order Add(Order order)
         {
             using (var ctx = new MovieShopContext())
             {
@@ -31,8 +31,9 @@ namespace MovieShopDAL.Repository
                 }
                 order.Movies = movies;
                 order.Customer = ctx.Customers.FirstOrDefault(cust => cust.Id == order.Customer.Id);
-                ctx.Orders.Add(order);
+                var orderToReturn = ctx.Orders.Add(order);
                 ctx.SaveChanges();
+                return orderToReturn;
             }
         }
 
@@ -54,16 +55,18 @@ namespace MovieShopDAL.Repository
             }
         }
 
-        public void Update(Order order)
+        public Order Update(Order order)
         {
             using (var ctx = new MovieShopContext())
             {
-                var orderToUpdate = ctx.Orders.Where(Order => Order.Id == order.Id).FirstOrDefault();
+                var orderToUpdate = ctx.Orders.FirstOrDefault(Order => Order.Id == order.Id);
                 if (orderToUpdate != null)
                 {
                     orderToUpdate.Movies = order.Movies; 
                     ctx.SaveChanges();
+                    return orderToUpdate;
                 }
+                return order;
             }
         }
     }
