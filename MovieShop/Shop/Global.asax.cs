@@ -17,5 +17,13 @@ namespace Shop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            if (Session["Currency"] == null)
+            {
+                Session["Currency"] = "DKK";
+            }
+        }
     }
 }

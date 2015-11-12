@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Models;
 
 namespace Shop.Controllers
 {
@@ -16,8 +17,9 @@ namespace Shop.Controllers
         [HttpGet]
         public ActionResult Index(int id)
         {
+            var currencyConverter = new CurrencyConverter(Session["Currency"].ToString());
             var movie = facade.GetMovieRepository().ReadById(id);
-
+            movie.Price = currencyConverter.Convert(movie.Price);
             return View(movie);
         }
 

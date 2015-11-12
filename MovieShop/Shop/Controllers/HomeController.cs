@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Models;
 
 namespace Shop.Controllers
 {
@@ -31,7 +32,18 @@ namespace Shop.Controllers
             return PartialView(genres);
         }
 
+        public ActionResult CurrencyDropDown()
+        {
+            var converter = new CurrencyConverter(Session["Currency"].ToString());
 
+            return PartialView(converter.Currencies);
+        }
+
+        public ActionResult ChooseCurrency(string currency)
+        {
+            Session["Currency"] = currency;
+            return new RedirectResult(Request.UrlReferrer.ToString());
+        }
 
     }
 }

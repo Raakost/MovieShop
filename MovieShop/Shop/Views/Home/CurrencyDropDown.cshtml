@@ -1,0 +1,17 @@
+﻿@model Dictionary<String, Double>
+
+@**@
+<li class="dropdown genre-dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Currency
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("ChooseCurrency", "Home", new { currency = item.Key })">@item.Key</a>
+            </li>
+        }
+    </ul>
+</li>

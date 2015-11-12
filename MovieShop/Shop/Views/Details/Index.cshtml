@@ -13,9 +13,9 @@
             {
                 @Html.AntiForgeryToken();
                 <input type="hidden" value="@Model.Id" name="movieId" />
-                    <button class="button-buy" type="submit">
-                        <span>
-                            @Model.Price ,- <span class="glyphicon glyphicon-shopping-cart"></span>
+                <button class="button-buy" type="submit">
+                    <span>
+                        @Model.Price @Session["Currency"] <span class="glyphicon glyphicon-shopping-cart"></span>
                         </span>
                     </button>
             }
