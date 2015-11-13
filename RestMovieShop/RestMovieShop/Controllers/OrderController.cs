@@ -30,8 +30,9 @@ namespace RestMovieShop.Controllers
         }
 
         [HttpDelete]
-        public void DeleteOrder(Order order)
+        public void DeleteOrder(int id)
         {
+            var order = new Order() {Id = id};
             new Facade().GetOrderRepository().Remove(order);
         }
 
