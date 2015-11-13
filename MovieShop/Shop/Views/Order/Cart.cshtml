@@ -10,7 +10,8 @@
                 <img src="@movie.PicturePath" />
                 <span class="item-info">
                     <span>@movie.Title"</span>
-                    <span class="item-price">@movie.Price ,- </span>
+                    <span class="item-price">@movie.Price @Session["Currency"] </span>
+                    <span class="item-price">@movie.Price @Session["Currency"] </span>
                 </span>
                 <hr />
             </li>
@@ -22,7 +23,7 @@
                 totalAmount = totalAmount + movie.Price;
             }
             <div class="total">
-                Total: @totalAmount ,-
+                Total: @totalAmount @Session["Currency"]
             </div>
         </li>
         <li>

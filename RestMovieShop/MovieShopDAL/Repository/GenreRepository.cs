@@ -12,7 +12,7 @@ namespace MovieShopDAL.Repository
 {
     public class GenreRepository : IRepository<Genre>
     {
-        IEnumerable<Genre> IRepository<Genre>.ReadAll()
+        public IEnumerable<Genre> ReadAll()
         {
 
             using (var ctx = new MovieShopContext())

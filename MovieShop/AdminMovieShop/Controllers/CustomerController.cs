@@ -19,7 +19,7 @@ namespace AdminMovieShop.Controllers
         public ActionResult Delete(int Id)
         {
             try {
-                facade.GetCustomerGateway().Remove(facade.GetCustomerGateway().ReadById(Id));
+                facade.GetCustomerGateway().Delete(facade.GetCustomerGateway().ReadById(Id));
             } catch (Exception ex) { return RedirectToAction("Index", "Customer", new {error = ex.Message}); }
             return RedirectToAction("Index", "Customer");
         }

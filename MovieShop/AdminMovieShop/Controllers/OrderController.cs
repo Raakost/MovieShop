@@ -19,7 +19,7 @@ namespace AdminMovieShop.Controllers
         [HttpPost]
         public ActionResult Delete(int Id)
         {
-            facade.GetOrderGateway().Remove(facade.GetOrderGateway().ReadById(Id));
+            facade.GetOrderGateway().Delete(facade.GetOrderGateway().ReadById(Id));
             return RedirectToAction("Index", "Order");
         }
     }

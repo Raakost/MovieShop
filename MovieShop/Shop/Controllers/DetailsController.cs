@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieShopGateway;
-
+using Shop.Models;
 namespace Shop.Controllers
 {
     public class DetailsController : Controller
@@ -16,9 +16,10 @@ namespace Shop.Controllers
         [HttpGet]
         public ActionResult Index(int id)
         {
+            var currencyConverter = new CurrencyConverter(Session["Currency"].ToString());
             var movie = facade.GetMovieGateway().ReadById(id);
-
-            return System.Web.UI.WebControls.View(movie);
+            movie.Price = currencyConverter.Convert(movie.Price);
+            return View(movie);
         }
 
         [ValidateAntiForgeryToken]

@@ -58,13 +58,13 @@ namespace AdminMovieShop.Controllers
         public ActionResult Delete(int Id)
         {
             var movie = facade.GetMovieGateway().ReadById(Id);
-            return System.Web.UI.WebControls.View(movie);
+            return View(movie);
         }
 
         [HttpPost]
         public ActionResult Delete(Movie movie)
         {
-            facade.GetMovieGateway().Remove(movie);
+            facade.GetMovieGateway().Delete(movie);
             return Redirect("Index");
         }
     }

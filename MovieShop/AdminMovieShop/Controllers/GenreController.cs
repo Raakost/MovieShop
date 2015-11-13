@@ -32,7 +32,7 @@ namespace AdminMovieShop.Controllers
         public ActionResult Delete(int Id)
         {
             try {
-                facade.GetGenreGateway().Remove(facade.GetGenreGateway().ReadById(Id));
+                facade.GetGenreGateway().Delete(facade.GetGenreGateway().ReadById(Id));
             } catch(Exception ex) { return RedirectToAction("Create", "Genre", new { error = ex.Message }); }
             return RedirectToAction("Create", "Genre");
         }

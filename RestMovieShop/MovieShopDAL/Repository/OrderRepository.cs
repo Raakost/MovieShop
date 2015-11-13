@@ -12,7 +12,7 @@ namespace MovieShopDAL.Repository
 {
     public class OrderRepository : IRepository<Order>
     {
-        IEnumerable<Order> IRepository<Order>.ReadAll()
+        public IEnumerable<Order> ReadAll()
         {
             using (var ctx = new MovieShopContext())
             {
@@ -41,7 +41,7 @@ namespace MovieShopDAL.Repository
         {
             using (var ctx = new MovieShopContext())
             {
-                return ctx.Orders.Where(order => order.Id == Id).FirstOrDefault();
+                return ctx.Orders.FirstOrDefault(order => order.Id == Id);
             }
         }
 
@@ -49,7 +49,7 @@ namespace MovieShopDAL.Repository
         {
             using (var ctx = new MovieShopContext())
             {
-                var orderToDelete = ctx.Orders.Where(Order => Order.Id == order.Id).FirstOrDefault();
+                var orderToDelete = ctx.Orders.FirstOrDefault(Order => Order.Id == order.Id);
                 ctx.Orders.Remove(orderToDelete);
                 ctx.SaveChanges();
             }
