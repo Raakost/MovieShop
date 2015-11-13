@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainModel;
 using MovieShopGateway.Services.IGatewayService;
+using System.Net.Http;
 
 namespace MovieShopGateway.Services
 {
@@ -12,32 +13,61 @@ namespace MovieShopGateway.Services
     {
         public Customer Add(Customer model)
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response =
+                    client.PostAsJsonAsync("http://localhost:14718/api/customer/", model).Result;
+                return response.Content.ReadAsAsync<Customer>().Result;
+            }
         }
 
         public void Delete(Customer model)
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response =
+                    client.DeleteAsync("http://localhost:14718/api/customer/" + model.Id).Result;
+            }
         }
 
         public IEnumerable<Customer> ReadAll()
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response =
+                    client.GetAsync("http://localhost:14718/api/customer/").Result;
+                return response.Content.ReadAsAsync<IEnumerable<Customer>>().Result;
+            }
         }
 
         public Customer ReadById(int id)
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response =
+                    client.GetAsync("http://localhost:14718/api/customer/" + id).Result;
+                return response.Content.ReadAsAsync<Customer>().Result;
+            }
         }
 
         public Customer Update(Customer model)
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response =
+                    client.PutAsJsonAsync("http://localhost:14718/api/customer/" + model.Id, model).Result;
+                return response.Content.ReadAsAsync<Customer>().Result;
+            }
         }
 
         public Customer ReadByEmail(string email)
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response =
+                    client.GetAsync("http://localhost:14718/api/customer/" + email).Result;
+                return response.Content.ReadAsAsync<Customer>().Result;
+            }
         }
     }
 }
