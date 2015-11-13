@@ -47,7 +47,7 @@ namespace MovieShopDAL.Repository
             {
                 using (var ctx = new MovieShopContext())
                 {
-                    var genreToDelete = ctx.Genres.Where(x => x.Id == genre.Id).FirstOrDefault();
+                    var genreToDelete = ctx.Genres.FirstOrDefault(x => x.Id == genre.Id);
                     ctx.Genres.Remove(genreToDelete);
                     ctx.SaveChanges();
                 }

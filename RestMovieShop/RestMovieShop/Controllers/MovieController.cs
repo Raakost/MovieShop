@@ -30,8 +30,9 @@ namespace RestMovieShop.Controllers
         }
 
         [HttpDelete]
-        public void DeleteMovie(Movie movie)
+        public void DeleteMovie(int id)
         {
+            var movie = new Movie() {Id = id};
             new Facade().GetMovieRepository().Remove(movie);
         }
         

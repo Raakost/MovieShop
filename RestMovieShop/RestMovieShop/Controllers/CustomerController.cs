@@ -23,6 +23,12 @@ namespace RestMovieShop.Controllers
             return new Facade().GetCustomerRepository().ReadById(Id);
         }
 
+        [HttpGet]
+        public Customer ReadByEmail(string email)
+        {
+            return new Facade().GetCustomerRepository().ReadByEmail(email);
+        }
+
         [HttpPost]
         public Customer AddCustomer(Customer customer)
         {
@@ -30,8 +36,9 @@ namespace RestMovieShop.Controllers
         }
 
         [HttpDelete]
-        public void DeleteCustomer(Customer customer)
+        public void DeleteCustomer(int id)
         {
+            var customer = new Customer() {Id = id};
             new Facade().GetCustomerRepository().Remove(customer);
         }
 

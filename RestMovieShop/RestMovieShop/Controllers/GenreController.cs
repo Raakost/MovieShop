@@ -31,8 +31,9 @@ namespace RestMovieShop.Controllers
 
 
         [HttpDelete]
-        public void DeleteGenre(Genre genre)
+        public void DeleteGenre(int id)
         {
+            var genre = new Genre() {Id = id};
             new Facade().GetGenreRepository().Remove(genre);
         }
 
