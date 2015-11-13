@@ -1,5 +1,5 @@
-﻿using MoviesShopProxy;
-using MoviesShopProxy.DomainModel;
+﻿using MovieShopGateway;
+using DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Shop.Controllers
         [HttpGet]
         public ActionResult Index(int? genreId)
         {
-            var movies = facade.GetMovieRepository().ReadAll();
+            var movies = facade.GetMovieGateway().ReadAll();
 
             if (genreId.HasValue)
             {
@@ -26,7 +26,7 @@ namespace Shop.Controllers
 
         public ActionResult GenreDropDown()
         {
-            var genres = facade.GetGenreRepository().ReadAll();
+            var genres = facade.GetGenreGateway().ReadAll();
 
             return PartialView(genres);
         }

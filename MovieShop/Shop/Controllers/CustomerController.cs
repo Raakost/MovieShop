@@ -1,5 +1,5 @@
-﻿using MoviesShopProxy;
-using MoviesShopProxy.DomainModel;
+﻿using DomainModel;
+using MovieShopGateway;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -20,7 +20,7 @@ namespace Shop.Controllers
         [HttpGet]
         public ActionResult CustomerConfirmation(string Email)
         {
-            var customer = facade.GetCustomerRepository().ReadByEmail(Email);
+            var customer = facade.GetCustomerGateway().ReadByEmail(Email);
             if (customer == null)
             {
                 customer = new Customer()
@@ -34,11 +34,11 @@ namespace Shop.Controllers
         [HttpPost]
         public ActionResult CustomerPlaceOrder(Customer customer)
         {
-            if (facade.GetCustomerRepository().ReadById(customer.Id) == null)
+            if (facade.GetCustomerGateway().ReadById(customer.Id) == null)
             {
-                facade.GetCustomerRepository().Add(customer);
+                facade.GetCustomerGateway().Add(customer);
             }
-            facade.GetOrderRepository().Add(new Order()
+            facade.GetOrderGateway().Add(new Order()
             {
                 Customer = customer,
                 Movies = ((List<Movie>)Session["Cart"]),

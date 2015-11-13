@@ -1,10 +1,10 @@
-﻿using MoviesShopProxy;
-using MoviesShopProxy.DomainModel;
+﻿using DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MovieShopGateway;
 
 namespace Shop.Controllers
 {
@@ -16,15 +16,15 @@ namespace Shop.Controllers
         [HttpGet]
         public ActionResult Index(int id)
         {
-            var movie = facade.GetMovieRepository().ReadById(id);
+            var movie = facade.GetMovieGateway().ReadById(id);
 
-            return View(movie);
+            return System.Web.UI.WebControls.View(movie);
         }
 
         [ValidateAntiForgeryToken]
         public ActionResult AddToCart(int movieId)
         {
-            var movie = facade.GetMovieRepository().ReadById(movieId);
+            var movie = facade.GetMovieGateway().ReadById(movieId);
 
             if (Session["Cart"] == null)
             {

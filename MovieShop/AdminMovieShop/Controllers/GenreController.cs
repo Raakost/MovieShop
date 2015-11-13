@@ -1,10 +1,7 @@
-﻿using MoviesShopProxy;
-using MoviesShopProxy.DomainModel;
+﻿using MovieShopGateway;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using DomainModel;
 
 namespace AdminMovieShop.Controllers
 {
@@ -21,13 +18,13 @@ namespace AdminMovieShop.Controllers
         public ActionResult Create(string error)
         {
             ViewBag.GenreError = error;
-            return View(facade.GetGenreRepository().ReadAll());
+            return View(facade.GetGenreGateway().ReadAll());
         }
 
         [HttpPost]
         public ActionResult Create(Genre genre)
         {
-            facade.GetGenreRepository().Add(genre);
+            facade.GetGenreGateway().Add(genre);
             return Redirect("Create");
         }
 
@@ -35,7 +32,7 @@ namespace AdminMovieShop.Controllers
         public ActionResult Delete(int Id)
         {
             try {
-                facade.GetGenreRepository().Remove(facade.GetGenreRepository().ReadById(Id));
+                facade.GetGenreGateway().Remove(facade.GetGenreGateway().ReadById(Id));
             } catch(Exception ex) { return RedirectToAction("Create", "Genre", new { error = ex.Message }); }
             return RedirectToAction("Create", "Genre");
         }

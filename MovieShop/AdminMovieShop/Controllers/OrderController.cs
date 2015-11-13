@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MoviesShopProxy;
-using MoviesShopProxy.DomainModel;
+using MovieShopGateway;
 
 namespace AdminMovieShop.Controllers
 {
@@ -14,13 +13,13 @@ namespace AdminMovieShop.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            return View(facade.GetOrderRepository().ReadAll());
+            return View(facade.GetOrderGateway().ReadAll());
         }
 
         [HttpPost]
         public ActionResult Delete(int Id)
         {
-            facade.GetOrderRepository().Remove(facade.GetOrderRepository().ReadById(Id));
+            facade.GetOrderGateway().Remove(facade.GetOrderGateway().ReadById(Id));
             return RedirectToAction("Index", "Order");
         }
     }

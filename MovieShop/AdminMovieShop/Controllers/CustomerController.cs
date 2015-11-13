@@ -1,8 +1,6 @@
-﻿using MoviesShopProxy;
+﻿using MovieShopGateway;
+using DomainModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AdminMovieShop.Controllers
@@ -14,14 +12,14 @@ namespace AdminMovieShop.Controllers
         public ActionResult Index(string error)
         {
             ViewBag.CustomerError = error;
-            return View(facade.GetCustomerRepository().ReadAll());
+            return View(facade.GetCustomerGateway().ReadAll());
         }
 
         [HttpPost]
         public ActionResult Delete(int Id)
         {
             try {
-                facade.GetCustomerRepository().Remove(facade.GetCustomerRepository().ReadById(Id));
+                facade.GetCustomerGateway().Remove(facade.GetCustomerGateway().ReadById(Id));
             } catch (Exception ex) { return RedirectToAction("Index", "Customer", new {error = ex.Message}); }
             return RedirectToAction("Index", "Customer");
         }
