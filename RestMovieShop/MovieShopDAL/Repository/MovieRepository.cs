@@ -29,7 +29,9 @@ namespace MovieShopDAL.Repository
         {
             using (var ctx = new MovieShopContext())
             {
-                // create queries
+                // create queries, call attack to attack a already existing genre in the DB on the movie to the movie, this
+                //way we prevent it from adding the same genre twice.
+                ctx.Movies.Attach(movie);
                 var movieToReturn = ctx.Movies.Add(movie);
                 // execute changes
                 ctx.SaveChanges();
