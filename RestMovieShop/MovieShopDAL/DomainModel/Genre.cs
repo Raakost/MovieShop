@@ -20,7 +20,6 @@ namespace MovieShopDAL.DomainModel
         [DataMember]
         public string Name { get; set; }
 
-        [DataMember]
         public virtual List<Movie> Movies { get; set; }
     }
 }

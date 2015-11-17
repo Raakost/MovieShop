@@ -65,7 +65,7 @@ namespace MovieShopGateway.Services
             using (var client = new HttpClient())
             {
                 HttpResponseMessage response =
-                    client.GetAsync("http://localhost:14718/api/customer/" + email).Result;
+                    client.GetAsync("http://localhost:14718/api/customer?email=" + email).Result;
                 return response.Content.ReadAsAsync<Customer>().Result;
             }
         }

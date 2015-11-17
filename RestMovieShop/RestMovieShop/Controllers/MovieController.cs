@@ -14,7 +14,8 @@ namespace RestMovieShop.Controllers
         [HttpGet]
         public IEnumerable<Movie> ReadAllMovies()
         {
-            return new Facade().GetMovieRepository().ReadAll();
+            var result = new Facade().GetMovieRepository().ReadAll();
+            return result;
         }
 
         [HttpGet]

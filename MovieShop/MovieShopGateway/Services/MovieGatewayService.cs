@@ -18,7 +18,8 @@ namespace MovieShopGateway.Services
             {
                 HttpResponseMessage response =
                     client.GetAsync("http://localhost:14718/api/movie/").Result;
-                return response.Content.ReadAsAsync<IEnumerable<Movie>>().Result;
+                var result = response.Content.ReadAsAsync<IEnumerable<Movie>>().Result;
+                return result;
             }
         }
 

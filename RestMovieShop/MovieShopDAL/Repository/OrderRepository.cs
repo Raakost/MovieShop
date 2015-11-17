@@ -32,6 +32,7 @@ namespace MovieShopDAL.Repository
                 order.Movies = movies;
                 order.Customer = ctx.Customers.FirstOrDefault(cust => cust.Id == order.Customer.Id);
                 var orderToReturn = ctx.Orders.Add(order);
+                
                 ctx.SaveChanges();
                 return orderToReturn;
             }

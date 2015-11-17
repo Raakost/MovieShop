@@ -30,7 +30,7 @@ namespace MovieShopDAL.DomainModel
         public string Country { get; set; }
         [DataMember]
         public string Email { get; set; }
-        [DataMember]
+        
         public virtual List<Order> Orders { get; set; }
 
     }

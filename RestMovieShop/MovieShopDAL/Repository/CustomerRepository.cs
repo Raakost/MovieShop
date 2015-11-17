@@ -55,13 +55,15 @@ namespace MovieShopDAL.Repository
                 using (var ctx = new MovieShopContext())
                 {
                     var customerToDelete = ctx.Customers.FirstOrDefault(cust => cust.Id == customer.Id);
+                    
                     ctx.Customers.Remove(customerToDelete);
                     ctx.SaveChanges();
                 }
             }
             catch (DbUpdateException ex)
             {
-                throw new Exception("Customer cannot be deleted");
+                throw new Exception("Customer cannot be deleted " + ex.Message);
+                
             }
         }
 
