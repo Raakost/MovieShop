@@ -44,7 +44,7 @@ namespace Shop.Controllers
                 Movies = ((List<Movie>)Session["Cart"]),
                 Date = DateTime.Now
             });
-            Session.Clear();
+            Session["Cart"] = null;
             return RedirectToAction("Index", "Home");
         }
     }

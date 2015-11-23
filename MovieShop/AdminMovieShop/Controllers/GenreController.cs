@@ -11,7 +11,7 @@ namespace AdminMovieShop.Controllers
         // GET: Genre
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "MoviesController");
+            return RedirectToAction("Index", "Movies");
         }
 
         [HttpGet]
